@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* شاشة الباسورد */
+#loginPage{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(-45deg,#ff4e8a,#ff8fb1,#ff6fa5,#ff2e74);
+  background-size:400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.login-box{
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  width:300px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.login-box h2{
+  margin-bottom:20px;
+  color:#b2194c;
+}
+
+.login-box input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  margin-bottom:15px;
+  font-size:16px;
+}
+
+.login-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:20px;
+  background:#8f0936;
+  color:rgb(245, 239, 239);
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* الموقع */
+#mainSite{
+  display:none;
+  min-height:100vh;
+  background: linear-gradient(135deg,#7a0f21,#ff7eb3);
+  color:white;
+  text-align:center;
+  padding:100px 20px;
+  overflow:hidden;
+}
+
+/* ظهور النص */
+.fadeText{
+  opacity:0;
+  transform:translateY(30px);
+  animation: fadeUp 2s forwards;
+}
+
+.fadeText:nth-child(2){ animation-delay:1s; }
+.fadeText:nth-child(3){ animation-delay:2s; }
+.fadeText:nth-child(4){ animation-delay:3s; }
+.fadeText:nth-child(5){ animation-delay:4s; }
+.fadeText:nth-child(6){ animation-delay:5s; }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+h1{
+  font-size:50px;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:22px;
+  max-width:700px;
+  margin:15px auto;
+  line-height:1.8;
+}
+
+/* القلوب */
+.heart{
+  position:fixed;
+  bottom:-50px;
+  font-size:25px;
+  animation: float linear infinite;
+}
+
+@keyframes float{
+  0%{
+    transform: translateY(0) scale(1);
+    opacity:1;
+  }
+  100%{
+    transform: translateY(-110vh) scale(1.5);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- أغنية حب -->
+<audio id="loveMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/23/audio_c8a9a3c7c7.mp3?filename=romantic-love-piano-121197.mp3" type="audio/mpeg">
+</audio>
+
+<!-- شاشة الباسورد -->
+<div id="loginPage">
+  <div class="login-box">
+    <h2>ادخل كلمة السر ❤️</h2>
+    <input type="password" id="password" placeholder="دخلي كلمه السر يا نور عيني❤️">
+    <button onclick="checkPassword()">دخول</button>
+    <p id="error" style="color:red; margin-top:10px;"></p>
+  </div>
+</div>
+
+<!-- الموقع -->
+<div id="mainSite">
+  <h1 class="fadeText">الي ام يزن و ديالا ❤️</h1>
+
+  <p class="fadeText">وجودك في حياتي أحلى نعمة ربنا ادهالي ❤️</p>
+  <p class="fadeText">انتي الأمان والراحة والسعادة كلها 💕</p>
+  <p class="fadeText">كل يوم بحبك أكتر من اليوم اللي قبله ❤️</p>
+  
+  <p class="fadeText">وعد مني أفضل جنبك وأسعدك طول العمر 💞</p>
+
+</div>
+
+<script>
+function checkPassword(){
+  var pass=document.getElementById("password").value;
+  if(pass==="12/12"){
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("mainSite").style.display="block";
+    document.getElementById("loveMusic").play();
+    createHearts();
+  }else{
+    document.getElementById("error").innerText="كلمة السر غلط ❌";
+  }
+}
+
+function createHearts(){
+  setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),7000);
+  },400);
+}
+</script>
+
+</body>
+</html>
+
+
